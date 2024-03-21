@@ -16,6 +16,7 @@ func TestGenerateSchemas(t *testing.T) {
 		schemas := GenerateSchemas(pkgs)
 		assert.Len(t, schemas, 3)
 		assert.Len(t, schemas["Model"].Properties, 10)
+		assert.Len(t, schemas["Model"].Properties["field1"].Description, 18)
 		/*
 			enc := json.NewEncoder(os.Stdout)
 			enc.SetIndent("", "  ")

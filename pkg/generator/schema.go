@@ -156,7 +156,7 @@ func (sg *schemaGenerator) schema(p *packages.Package, ts *ast.TypeSpec, descrip
 	}
 
 	return schema.
-		WithDescription(description).
+		WithDescription(strings.TrimSpace(description)).
 		WithProperties(properties)
 }
 
@@ -231,7 +231,7 @@ func (sg *schemaGenerator) handleField(p *packages.Package, t types.Type, name s
 }
 
 func handleGodoc(prop *spec.Schema, doc *ast.CommentGroup) *spec.Schema {
-	prop.Description = doc.Text()
+	prop.Description = strings.TrimSpace(doc.Text())
 
 	for _, c := range doc.List {
 		exampleMatch := schemaExampleExp.FindStringSubmatch(c.Text)
