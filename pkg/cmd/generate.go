@@ -12,11 +12,12 @@ import (
 )
 
 const (
-	output = "output"
+	generateOutput = "generate.output"
 )
 
 var (
-	generateCmd = &cobra.Command{Use: "generate [packages]",
+	generateCmd = &cobra.Command{
+		Use:  "generate [packages]",
 		Args: cobra.MinimumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cfg := &packages.Config{
@@ -30,12 +31,12 @@ var (
 			spec := generator.GenerateSpec(pkgs)
 
 			var file *os.File
-			if viper.GetString(output) == "-" {
+			if viper.GetString(generateOutput) == "-" {
 				file = os.Stdout
 			} else {
-				file, err = os.Create(viper.GetString(output))
+				file, err = os.Create(viper.GetString(generateOutput))
 				if err != nil {
-					return fmt.Errorf("unable to create output file %s: %w", viper.GetString(output), err)
+					return fmt.Errorf("unable to create output file %s: %w", viper.GetString(generateOutput), err)
 				}
 				defer file.Close()
 			}
@@ -51,8 +52,8 @@ var (
 )
 
 func init() {
-	generateCmd.Flags().StringP(output, "o", "openapi.json", "Output file for openapi specification document")
-	viper.BindPFlag(output, generateCmd.Flags().Lookup(output))
+	generateCmd.Flags().StringP("output", "o", "openapi.json", "Output file for openapi specification document")
+	viper.BindPFlag(generateOutput, generateCmd.Flags().Lookup("output"))
 
 	rootCmd.AddCommand(generateCmd)
 }
