@@ -135,6 +135,9 @@ func (sg *schemaGenerator) schema(p *packages.Package, ts *ast.TypeSpec, descrip
 				if m != nil {
 					field, _, _ := strings.Cut(m[1], ",") // Consider if json tag options may ve relevant
 					if field != "" {
+						if field == "-" {
+							continue
+						}
 						propertyName = field
 					}
 				}
@@ -271,7 +274,7 @@ func findTypeSpec(p *packages.Package, fieldName string) *ast.TypeSpec {
 }
 
 func checkKnownTypes(t *types.TypeName) *spec.Schema {
-	if t.Pkg().Path() == "time" && t.Name() == "Time" {
+	if t.Pkg() != nil && t.Pkg().Path() == "time" && t.Name() == "Time" {
 		return spec.DateTimeProperty()
 	}
 	return nil
