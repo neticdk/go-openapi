@@ -41,3 +41,29 @@ type refPrivat struct {
 type RefExported struct {
 	RE string `jsong:"re"`
 }
+
+// Problem is simple implementation of [RFC9457]
+//
+// [RFC9457]: https://datatracker.ietf.org/doc/html/rfc9457
+//
+//openapi:component schema Problem
+type Problem struct {
+	// Type identify problem type RFC-9457#3.1.1
+	//schema:format uri
+	Type string `json:"type,omitempty"`
+
+	// Status is the http status code and must be consistent with the server status code RFC-9457#3.1.2
+	Status *int `json:"status,omitempty"`
+
+	// Title is short humanreadable summary RFC-9457#3.1.3
+	Title string `json:"title,omitempty"`
+
+	// Detail is humanreadable explanation of the specific occurence of the problem RFC-9457#3.1.4
+	Detail string `json:"detail,omitempty"`
+
+	// Instance identifies the specific instance of the problem RFC-9457#3.1.5
+	Instance string `json:"instance,omitempty"`
+
+	// Err is containing wrapped error and will not be serialized to JSON
+	Err error `json:"-"`
+}

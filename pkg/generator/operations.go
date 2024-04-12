@@ -8,6 +8,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strconv"
 	"strings"
 
@@ -159,7 +160,9 @@ func handleResponseDescription(op *spec.Operation, code, descriptiopn string) {
 }
 
 func handleResponseContent(op *spec.Operation, code, mediaType, schemaID string) {
-	op.WithProduces(mediaType)
+	if !slices.Contains(op.Produces, mediaType) {
+		op.WithProduces(mediaType)
+	}
 	handleResponse(op, code, func(r *spec.Response) {
 		r.WithSchema(spec.RefSchema(fmt.Sprintf("#%s/%s", refPrefix, schemaID)))
 	})

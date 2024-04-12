@@ -14,7 +14,7 @@ func TestGenerateSchemas(t *testing.T) {
 	pkgs, err := packages.Load(cfg, "./fixture/model/...")
 	if assert.NoError(t, err) {
 		schemas := GenerateSchemas(pkgs)
-		assert.Len(t, schemas, 3)
+		assert.Len(t, schemas, 4)
 		assert.Len(t, schemas["Model"].Properties, 10)
 		assert.Len(t, schemas["Model"].Properties["field1"].Description, 18)
 		/*
