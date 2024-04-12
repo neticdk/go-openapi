@@ -17,7 +17,10 @@ func ListOperation() {}
 //openapi:responseHeader default My-Other-Custom-Header string/date-time "this header will tell you..."
 //openapi:responseExample default application/ld+json examples/get_operation_default.json
 //openapi:response 400 "client did something wrong"
+//openapi:responseContent 400 application/problem+json Problem
 //openapi:responseExample 400 application/problem+json examples/get_operation_error.json
+//openapi:response 404 "something was not found"
+//openapi:responseContent 404 application/problem+json Problem
 func GetOperation() {}
 
 // ReplaceOperation will replace (or create) a specific entity

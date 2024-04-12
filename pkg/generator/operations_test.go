@@ -20,6 +20,7 @@ func TestGenerateOperations(t *testing.T) {
 
 		require.NotNil(t, paths.Paths["/entities/{id}"].Get)
 		assert.Len(t, paths.Paths["/entities/{id}"].Get.Responses.Default.Examples["application/ld+json"], 2)
+		assert.Len(t, paths.Paths["/entities/{id}"].Get.Produces, 2)
 
 		require.NotNil(t, paths.Paths["/entities/{id}"].Put)
 		assert.Len(t, paths.Paths["/entities/{id}"].Put.Parameters, 2)
