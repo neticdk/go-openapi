@@ -17,8 +17,10 @@ const (
 
 var (
 	generateCmd = &cobra.Command{
-		Use:  "generate [packages]",
-		Args: cobra.MinimumNArgs(1),
+		Use:   "generate [packages]",
+		Short: "Generates OpenAPI specification from source code",
+		Long:  "This command will render OpenAPI specification based on scanning given packages for godoc directives.",
+		Args:  cobra.MinimumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cfg := &packages.Config{
 				Mode: packages.NeedName | packages.NeedFiles | packages.NeedImports | packages.NeedDeps | packages.NeedTypes | packages.NeedSyntax | packages.NeedTypesInfo,
