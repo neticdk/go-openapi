@@ -16,8 +16,10 @@ const (
 
 var (
 	expandCmd = &cobra.Command{
-		Use:  "expand [openapi-file]",
-		Args: cobra.ExactArgs(1),
+		Use:   "expand [openapi-file]",
+		Short: "Expand OpenAPI specification by inlining schema definitions",
+		Long:  "Running this command will inline all schema references such that the path and operation definitions are self-contained. This can be useful for tooling rendering OpenAPI spcification documents to other formats.",
+		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			doc, err := loads.Spec(args[0])
 			if err != nil {
