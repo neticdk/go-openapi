@@ -2,7 +2,7 @@ module github.com/neticdk/go-openapi
 
 go 1.23.0
 
-toolchain go1.24.4
+toolchain go1.24.6
 
 require (
 	github.com/go-openapi/spec v0.21.0
