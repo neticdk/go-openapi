@@ -2,12 +2,12 @@ module github.com/neticdk/go-openapi
 
 go 1.24.0
 
-toolchain go1.25.0
+toolchain go1.25.1
 
 require (
 	github.com/go-openapi/spec v0.21.0
 	github.com/rs/zerolog v1.34.0
-	github.com/spf13/cobra v1.10.0
+	github.com/spf13/cobra v1.10.1
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/tools v0.37.0
 )
