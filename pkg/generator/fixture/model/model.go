@@ -26,6 +26,8 @@ type Model struct {
 	Field6 RefExported       `json:"field6"`
 	Field7 []string          `json:"field7"`
 	Field8 map[string]string `json:"field8"`
+	Field9 any               `json:"field9"`
+	Field0 []any             `json:"field0"`
 }
 
 // embeddedPrivate is a struct which will be embedded but not exported

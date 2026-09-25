@@ -216,6 +216,9 @@ func (sg *schemaGenerator) handleField(p *packages.Package, t types.Type, name s
 	case *types.Pointer:
 		return sg.handleField(p, fieldType.Elem(), name, embedded, doc)
 
+	case *types.Alias:
+		return sg.handleField(p, types.Unalias(fieldType), name, embedded, doc)
+
 	case *types.Interface:
 		prop = &spec.Schema{SchemaProps: spec.SchemaProps{Type: []string{"object"}}}
 
