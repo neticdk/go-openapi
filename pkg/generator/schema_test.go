@@ -15,8 +15,10 @@ func TestGenerateSchemas(t *testing.T) {
 	if assert.NoError(t, err) {
 		schemas := GenerateSchemas(pkgs)
 		assert.Len(t, schemas, 4)
-		assert.Len(t, schemas["Model"].Properties, 10)
+		assert.Len(t, schemas["Model"].Properties, 12)
 		assert.Len(t, schemas["Model"].Properties["field1"].Description, 18)
+		assert.True(t, schemas["Model"].Properties["field9"].Type.Contains("object"))
+		assert.True(t, schemas["Model"].Properties["field0"].Items.Schema.Type.Contains("object"))
 		/*
 			enc := json.NewEncoder(os.Stdout)
 			enc.SetIndent("", "  ")
